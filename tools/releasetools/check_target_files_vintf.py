@@ -41,11 +41,11 @@ OPTIONS = common.OPTIONS
 # Look for TARGET_COPY_OUT_* variables in board_config.mk for possible paths for
 # each partition.
 DIR_SEARCH_PATHS = {
+    '/system_ext': ('SYSTEM_EXT', 'SYSTEM/system_ext'),
     '/system': ('SYSTEM',),
     '/vendor': ('VENDOR', 'SYSTEM/vendor'),
     '/product': ('PRODUCT', 'SYSTEM/product'),
     '/odm': ('ODM', 'VENDOR/odm', 'SYSTEM/vendor/odm'),
-    '/system_ext': ('SYSTEM_EXT', 'SYSTEM/system_ext'),
 }
 
 UNZIP_PATTERN = ['META/*', '*/build.prop']
