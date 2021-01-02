@@ -53,4 +53,6 @@ if [ -n "$BUILD_THUMBPRINT" ] ; then
   echo "ro.build.thumbprint=$BUILD_THUMBPRINT"
 fi
 
+# Krypton props
+echo "ro.krypton.device=$KRYPTON_DEVICE"
 echo "# end build properties"
