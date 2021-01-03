@@ -297,6 +297,7 @@ PRODUCT_HOST_PACKAGES += \
     ld.mc \
     lpdump \
     mdnsd \
+    mkdtimg \
     minigzip \
     mke2fs \
     resize2fs \
