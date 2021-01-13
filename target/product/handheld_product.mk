@@ -33,6 +33,7 @@ PRODUCT_PACKAGES += \
     OneTimeInitializer \
     preinstalled-packages-platform-handheld-product.xml \
     SettingsIntelligence \
+		Stk \
     frameworks-base-overlays
 
 PRODUCT_PACKAGES_DEBUG += \
