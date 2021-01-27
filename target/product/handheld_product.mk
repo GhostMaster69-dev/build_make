@@ -29,6 +29,7 @@ PRODUCT_PACKAGES += \
     DeskClock \
     Gallery2 \
     LatinIME \
+    messaging \
     Music \
     OneTimeInitializer \
     preinstalled-packages-platform-handheld-product.xml \
