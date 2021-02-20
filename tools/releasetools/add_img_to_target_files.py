@@ -167,7 +167,7 @@ def AddVendor(output_zip, recovery_img=None, boot_img=None):
     return img.name
 
   def output_sink(fn, data):
-    ofile = open(os.path.join(OPTIONS.input_tmp, "VENDOR", fn), "w")
+    ofile = open(os.path.join(OPTIONS.input_tmp, "VENDOR", fn), "wb")
     ofile.write(data)
     ofile.close()
 
