@@ -2181,9 +2181,6 @@ endif # INSTALLED_VENDOR_BOOTIMAGE_TARGET not defined
 ifndef BOARD_RECOVERY_MKBOOTIMG_ARGS
   BOARD_RECOVERY_MKBOOTIMG_ARGS := $(BOARD_MKBOOTIMG_ARGS)
 endif
-ifdef BOARD_MAGISK_INIT
-  MAGISK_INIT := $(PRODUCT_OUT)/magiskinit
-endif
 
 ifeq ($(strip $(BOARD_KERNEL_SEPARATED_DT)),true)
   INTERNAL_RECOVERYIMAGE_ARGS += --dt $(INSTALLED_DTIMAGE_TARGET)
@@ -2198,8 +2195,7 @@ $(recovery_uncompressed_ramdisk): $(MKBOOTFS) \
 	    $(INSTALLED_2NDBOOTLOADER_TARGET) \
 	    $(INSTALLED_RECOVERY_BUILD_PROP_TARGET) \
 	    $(recovery_resource_deps) \
-	    $(recovery_fstab) \
-	    $(MAGISK_INIT)
+	    $(recovery_fstab)
 	# Making recovery image
 	mkdir -p $(TARGET_RECOVERY_OUT)
 	mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/sdcard $(TARGET_RECOVERY_ROOT_OUT)/tmp
@@ -2209,8 +2205,6 @@ $(recovery_uncompressed_ramdisk): $(MKBOOTFS) \
 	# Modifying ramdisk contents...
 	$(if $(filter true,$(BOARD_BUILD_SYSTEM_ROOT_IMAGE)),, \
 	  ln -sf /system/bin/init $(TARGET_RECOVERY_ROOT_OUT)/init)
-	$(if $(filter true,$(BOARD_MAGISK_INIT)), \
-	  rsync -a $(MAGISK_INIT) $(TARGET_RECOVERY_ROOT_OUT)/init)
 	# Removes $(TARGET_RECOVERY_ROOT_OUT)/init*.rc EXCEPT init.recovery*.rc.
 	find $(TARGET_RECOVERY_ROOT_OUT) -maxdepth 1 -name 'init*.rc' -type f -not -name "init.recovery.*.rc" | xargs rm -f
 	cp $(TARGET_ROOT_OUT)/init.recovery.*.rc $(TARGET_RECOVERY_ROOT_OUT)/ 2> /dev/null || true # Ignore error when the src file doesn't exist.
