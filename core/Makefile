@@ -5288,7 +5288,7 @@ ifeq (true,$(PRODUCT_USE_DYNAMIC_PARTITIONS))
 	$(call dump-dynamic-partitions-info, $(zip_root)/META/dynamic_partitions_info.txt)
 endif
 	PATH=$(INTERNAL_USERIMAGES_BINARY_PATHS):$$PATH MKBOOTIMG=$(MKBOOTIMG) \
-	    $(ADD_IMG_TO_TARGET_FILES) -a -v -p $(HOST_OUT) $(zip_root)
+	    $(ADD_IMG_TO_TARGET_FILES) -a -p $(HOST_OUT) $(zip_root)
 ifeq ($(BUILD_QEMU_IMAGES),true)
 	$(hide) AVBTOOL=$(AVBTOOL) $(MK_VBMETA_BOOT_KERNEL_CMDLINE_SH) $(zip_root)/IMAGES/vbmeta.img \
 	    $(zip_root)/IMAGES/system.img $(zip_root)/IMAGES/VerifiedBootParams.textproto
