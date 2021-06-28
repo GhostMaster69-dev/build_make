@@ -777,7 +777,7 @@ class PartitionBuildProps(object):
         data = ReadFromInputFile(input_file, prop_file)
         break
       except KeyError:
-        logger.warning('Failed to read %s', prop_file)
+        pass
 
     props = PartitionBuildProps(input_file, name, placeholder_values)
     props._LoadBuildProp(data)
