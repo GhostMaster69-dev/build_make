@@ -316,6 +316,10 @@ include $(BUILD_SYSTEM)/envsetup.mk
 # See envsetup.mk for a description of SCAN_EXCLUDE_DIRS
 FIND_LEAVES_EXCLUDES := $(addprefix --prune=, $(SCAN_EXCLUDE_DIRS) .repo .git)
 
+ifneq ($(KRYPTON_BUILD),)
+include vendor/krypton/configs/KryptonConfig.mk
+endif
+
 # The build system exposes several variables for where to find the kernel
 # headers:
 #   TARGET_DEVICE_KERNEL_HEADERS is automatically created for the current
@@ -1153,6 +1157,14 @@ endif
 # in the source tree.
 dont_bother_goals := out \
     product-graph dump-products
+
+ifneq ($(KRYPTON_BUILD),)
+ifneq ($(wildcard device/lineage/sepolicy/common/sepolicy.mk),)
+## We need to be sure the global selinux policies are included
+## last, to avoid accidental resetting by device configs
+$(eval include device/lineage/sepolicy/common/sepolicy.mk)
+endif
+endif
 
 # Make ANDROID Soong config variables visible to Android.mk files, for
 # consistency with those defined in BoardConfig.mk files.
