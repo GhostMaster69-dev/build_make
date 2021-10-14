@@ -4641,6 +4641,7 @@ ifneq ($(BOARD_PARTIAL_OTA_UPDATE_PARTITIONS_LIST),)
 ifneq ($(TARGET_OTA_ASSERT_DEVICE),)
 	$(hide) echo "ota_override_device=$(TARGET_OTA_ASSERT_DEVICE)" >> $@
 endif
+endif
 
 .PHONY: misc_info
 misc_info: $(INSTALLED_MISC_INFO_TARGET)
