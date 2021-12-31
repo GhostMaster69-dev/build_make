@@ -317,7 +317,7 @@ include $(BUILD_SYSTEM)/envsetup.mk
 FIND_LEAVES_EXCLUDES := $(addprefix --prune=, $(SCAN_EXCLUDE_DIRS) .repo .git)
 
 ifneq ($(KRYPTON_BUILD),)
-include vendor/krypton/configs/KryptonConfig.mk
+include vendor/krypton/config/BoardConfigKrypton.mk
 endif
 
 # The build system exposes several variables for where to find the kernel
@@ -1179,6 +1179,9 @@ endif
 -include external/ltp/android/ltp_package_list.mk
 DEFAULT_DATA_OUT_MODULES := ltp $(ltp_packages) $(kselftest_modules)
 .KATI_READONLY := DEFAULT_DATA_OUT_MODULES
+
+# Include vendor specific config.mk file
+-include vendor/krypton/build/core/config.mk
 
 # Make RECORD_ALL_DEPS readonly.
 RECORD_ALL_DEPS :=$= $(filter true,$(RECORD_ALL_DEPS))
